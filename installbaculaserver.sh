@@ -1,11 +1,7 @@
 # ESSE SCRIPT REALIZA A INSTALACAO DO BACULA.
 # ANTES DA EXECUCAO LEIA AS LINHAS COMENTANDAS.
-# ATENHA-SE A LINHA 26.
 
 # link de referencia https://www.bacula.lat/community/comandos-de-compilacao/
-
-
-
 
 #! /bin/bash
 
@@ -23,12 +19,12 @@ echo "[INSTALANDO AS DEPENDENCIAS E COMPILACOES DO SERVIDOR LINUX]"
 apt-get install -y build-essential libreadline6-dev zlib1g-dev liblzo2-dev mt-st mtx postfix libacl1-dev libssl-dev libmysql++-dev mysql-server
 
 # CONFIGURA A COMPILACAO
-# ALTERE O E-MAIL E O IP NO FINAL DA LINHA 31.
 
 echo "[CONFIGURANDO A COMPILACAO]"
-
+read -p " DIGITE O JOB E-MAIL:" email
+read -p " DIGITE O IP DO SERVIDOR BACULA:" ip
 cd /usr/src/bacula*
-./configure --with-readline=/usr/include/readline --disable-conio --bindir=/usr/bin --sbindir=/usr/sbin --with-scriptdir=/etc/bacula/scripts --with-working-dir=/var/lib/bacula --with-logdir=/var/log --enable-smartalloc --with-mysql --with-archivedir=/mnt/backup --with-job-email=matheusp1998@gmail.com --with-hostname=192.168.165.222
+./configure --with-readline=/usr/include/readline --disable-conio --bindir=/usr/bin --sbindir=/usr/sbin --with-scriptdir=/etc/bacula/scripts --with-working-dir=/var/lib/bacula --with-logdir=/var/log --enable-smartalloc --with-mysql --with-archivedir=/mnt/backup --with-job-email="$email" --with-hostname="$ip"
 
 #PARA COMPILAR, INSTALAR E HABILITAR O INCIO AUTOMATICO DOS DAEMONS DO BACULA EM TEMPO DE BOOT
 
